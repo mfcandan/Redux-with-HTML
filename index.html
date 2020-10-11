@@ -7,7 +7,7 @@
 </head>
 <body>
      <input type="text" id="todo">
-     <button id="submit">submit</button>
+     <button id="submit-todo">submit</button>
      <div id="container"></div>
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"></script>
@@ -31,8 +31,13 @@
                  e.innerHTML = todo;
                  container.appendChild(e);
              });
-         }
-         render();
+         };
+         document.getElementById('submit-todo').onclick = () => {
+             store.dispatch({
+                 type: 'add',
+                 item: document.getElementById('todo').value
+             });
+         };
      </script>
 </body>
 </html>
