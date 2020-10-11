@@ -13,8 +13,12 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"></script>
      <script>
          const reducer = Redux.combineReducers({
-             todos: () => {
-                 return ['groceries','make dinner','wash dishes'];
+             todos: ( state = [], action) => {
+                 const newState = Object.assign([], state);
+                 if (action.type == 'add'){
+                     newState.push(action.item);
+                 }
+                 return newState;
              }
          });
 
@@ -37,6 +41,7 @@
                  type: 'add',
                  item: document.getElementById('todo').value
              });
+             render();
          };
      </script>
 </body>
